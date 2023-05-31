@@ -19,11 +19,11 @@ app.use((req, res, next) => {
 app.use(platformsRoutes)
 
 //connect do db
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect('mongodb+srv://sebastianitu61:guBCdD86trZgcqTC@metin2platforms.6zhlwhe.mongodb.net/?retryWrites=true&w=majority')
     .then(() => {
-        app.listen(process.env.PORT, () => {
+        app.listen(80, () => {
             console.log('Connected to DB')
-            console.log(`Listening on port ${process.env.PORT}`)
+            console.log(`Listening on port 80`)
         })
     })
     .catch((error) => {
