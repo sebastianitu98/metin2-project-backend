@@ -21,9 +21,9 @@ app.use(platformsRoutes)
 //connect do db
 mongoose.connect('mongodb+srv://sebastianitu61:guBCdD86trZgcqTC@metin2platforms.6zhlwhe.mongodb.net/?retryWrites=true&w=majority')
     .then(() => {
-        app.listen(80, () => {
+        app.listen(3000, () => {
             console.log('Connected to DB')
-            console.log(`Listening on port 80`)
+            console.log(`Listening on port 3000`)
         })
     })
     .catch((error) => {
