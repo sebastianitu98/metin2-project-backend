@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 app.use(platformsRoutes)
 
 app.get('/.well-known/pki-validation/B22F499C420CC2971E6C76E1966C65E9.txt', (req, res) => {
-    res.sendFile('B22F499C420CC2971E6C76E1966C65E9.txt')
+    res.sendFile('metin2-project-backend/B22F499C420CC2971E6C76E1966C65E9.txt')
 })
 
 //connect do db
