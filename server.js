@@ -4,11 +4,18 @@ const platformsRoutes = require('./routes/platforms')
 const mongoose = require('mongoose')
 var cors = require('cors')
 const fs = require('fs')
+const https = require('https')
 
-const file = fs.readFileSync('./B22F499C420CC2971E6C76E1966C65E9.txt')
+const key = fs.readFileSync('private.key')
+const cert = fs.readFileSync('certificate.crt')
 
 const app = express()
 app.use(cors())
+
+const cred = {
+    key,
+    cert
+}
 
 //middleware
 app.use(express.json())
@@ -21,9 +28,6 @@ app.use((req, res, next) => {
 
 app.use(platformsRoutes)
 
-app.get('/.well-known/pki-validation/B22F499C420CC2971E6C76E1966C65E9.txt', (req, res) => {
-    res.sendFile('/home/ubuntu/metin2-project-backend/B22F499C420CC2971E6C76E1966C65E9.txt')
-})
 
 //connect do db
 mongoose.connect('mongodb+srv://sebastianitu61:guBCdD86trZgcqTC@metin2platforms.6zhlwhe.mongodb.net/?retryWrites=true&w=majority')
@@ -36,4 +40,7 @@ mongoose.connect('mongodb+srv://sebastianitu61:guBCdD86trZgcqTC@metin2platforms.
     .catch((error) => {
         console.log(error)
     })
+
+const httpsServer = https.createServer(cred, app)
+httpsServer.listen(8443)
 
